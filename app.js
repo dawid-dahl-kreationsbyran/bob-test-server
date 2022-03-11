@@ -5,12 +5,19 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const logger = require("morgan")
 const basicAuth = require("express-basic-auth")
+const bodyParser = require("body-parser")
 
 const indexRouter = require("./routes/index")
 const usersRouter = require("./routes/users")
 const apiRouter = require("./routes/api")
 
 const app = express()
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(
 	basicAuth({
